@@ -59,6 +59,16 @@ jobs:
         cd sync
         ./orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
 
+    - name: Rename vendor/twrp to vendor/fox
+      run: |
+        cd ~/fox_12.1
+        if [ -d "vendor/twrp" ]; then
+          mv vendor/twrp vendor/fox
+          echo "Renamed vendor/twrp -> vendor/fox"
+        else
+          echo "vendor/twrp not found, skipping"
+        fi
+
     - name: Copy Device Tree & Build Recovery
       shell: /usr/bin/bash {0}
       run: |
