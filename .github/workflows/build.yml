@@ -80,6 +80,14 @@ jobs:
         echo "=== grep PRODUCT_BUILD_VENDOR_BOOT in board_config.mk ==="
         grep -n "VENDOR_BOOT" build/make/core/board_config.mk | head -30
 
+    - name: Debug vendor_boot vars
+      run: |
+        cd ~/fox_12.1
+        echo "=== PRODUCT_BUILD_VENDOR_BOOT_IMAGE ==="
+        grep -rn "PRODUCT_BUILD_VENDOR_BOOT_IMAGE" build/make/ vendor/fox/ device/xiaomi/spinel/ 2>/dev/null || true
+        echo "=== BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT ==="
+        grep -rn "BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT" device/xiaomi/spinel/BoardConfig.mk || true
+
     - name: Copy Device Tree & Build Recovery
       shell: /usr/bin/bash {0}
       run: |
