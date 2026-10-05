@@ -59,6 +59,13 @@ jobs:
         cd sync
         ./orangefox_sync.sh --branch 12.1 --path ~/fox_12.1
 
+    - name: Create vendor/fox symlink
+      run: |
+        cd ~/fox_12.1/vendor
+        ln -sfn twrp fox
+        ls -la
+        ls -la fox/config/common.mk || echo "STILL NOT FOUND"
+
     - name: Copy Device Tree & Build Recovery
       shell: /usr/bin/bash {0}
       run: |
