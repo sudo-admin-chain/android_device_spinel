@@ -68,6 +68,9 @@ jobs:
         else
           echo "vendor/twrp not found, skipping"
         fi
+        sed -i 's|vendor/twrp|vendor/fox|g' build/envsetup.sh
+        sed -i 's|vendor/twrp|vendor/fox|g' build/make/core/*.mk
+        grep -rln 'vendor/twrp' build/ | xargs -r sed -i 's|vendor/twrp|vendor/fox|g'
 
     - name: Copy Device Tree & Build Recovery
       shell: /usr/bin/bash {0}
