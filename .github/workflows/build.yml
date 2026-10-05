@@ -89,7 +89,7 @@ jobs:
         fi
         
         # Compile recovery with job limiting
-        mka recoveryimage -j2
+        mka vendorbootimage -j2
 
     - name: Upload Recovery Artifacts
       uses: actions/upload-artifact@v4
