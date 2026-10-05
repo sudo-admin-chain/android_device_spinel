@@ -72,6 +72,14 @@ jobs:
         sed -i 's|vendor/twrp|vendor/fox|g' build/make/core/*.mk
         grep -rln 'vendor/twrp' build/ | xargs -r sed -i 's|vendor/twrp|vendor/fox|g'
 
+    - name: Debug board_config check
+      run: |
+        cd ~/fox_12.1
+        echo "=== board_config.mk line 902 context ==="
+        sed -n '895,910p' build/make/core/board_config.mk
+        echo "=== grep PRODUCT_BUILD_VENDOR_BOOT in board_config.mk ==="
+        grep -n "VENDOR_BOOT" build/make/core/board_config.mk | head -30
+
     - name: Copy Device Tree & Build Recovery
       shell: /usr/bin/bash {0}
       run: |
